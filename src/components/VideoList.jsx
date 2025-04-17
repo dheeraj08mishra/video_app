@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { YOUTUBE_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const VideoList = () => {
+  const navigate = useNavigate();
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     fetchVideos();
   }, []);
+
+  const playWatchVideo = (video) => {
+    const videoId = video.id.videoId || video.id;
+    navigate(`/watch?v=${videoId}`);
+  };
 
   const fetchVideos = async () => {
     try {
@@ -25,6 +32,7 @@ const VideoList = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {videos.map((video) => (
           <div
+            onClick={() => playWatchVideo(video)}
             key={video.id}
             className="rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300 cursor-pointer"
           >
@@ -44,7 +52,11 @@ const VideoList = () => {
                 {video.snippet.channelTitle}
               </p>
               <p className="text-gray-500 text-xs">
-                {Number(video.statistics.viewCount).toLocaleString()} views •{" "}
+                {video.statistics?.viewCount
+                  ? `${Number(
+                      video.statistics.viewCount
+                    ).toLocaleString()} views • `
+                  : ""}
                 {new Date(video.snippet.publishedAt).toLocaleDateString()}
               </p>
             </div>

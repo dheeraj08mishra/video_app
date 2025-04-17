@@ -1,6 +1,7 @@
 import Sidebar from "./Sidebar";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../utils/redux/sidebarSlice";
+import { Link } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const toggleSideBar = () => {
@@ -17,11 +18,13 @@ const Header = () => {
           >
             ≣
           </button>
-          <img
-            className="w-24"
-            src="https://www.gstatic.com/youtube/img/promos/growth/b337061115c0cba2c061eeb6dc208053b439bbeabc4a49c0374f4687dd27cf8c_244x112.webp"
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              className="w-24"
+              src="https://www.gstatic.com/youtube/img/promos/growth/b337061115c0cba2c061eeb6dc208053b439bbeabc4a49c0374f4687dd27cf8c_244x112.webp"
+              alt="logo"
+            />
+          </Link>
         </div>
 
         {/* Search */}

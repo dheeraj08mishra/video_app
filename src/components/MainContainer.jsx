@@ -3,7 +3,7 @@ import Buttonset from "./Buttonset";
 const MainContainer = () => {
   return (
     <>
-      {/* <Buttonset /> */}
+      <Buttonset />
       <VideoList />
     </>
   );
