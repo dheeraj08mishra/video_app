@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import MainContainer from "./MainContainer";
 import PlayVideo from "./PlayVideo";
+import SearchResult from "./SearchResult";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/watch",
         element: <PlayVideo />,
+      },
+      {
+        path: "/results",
+        element: <SearchResult />,
       },
       {
         path: "shorts",
