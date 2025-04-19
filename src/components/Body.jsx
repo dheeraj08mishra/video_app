@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import MainContainer from "./MainContainer";
 import PlayVideo from "./PlayVideo";
 import SearchResult from "./SearchResult";
+import ErrorDetails from "./ErrorDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "shorts",
         element: <div>Shorts Page</div>,
+      },
+      {
+        path: "error",
+        element: <ErrorDetails />,
       },
     ],
   },

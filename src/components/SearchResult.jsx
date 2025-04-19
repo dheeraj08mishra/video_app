@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { YOUTUBE_Search_API_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { closeSidebar } from "../utils/redux/sidebarSlice";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const query = searchParams.get("search_query");
 
   useEffect(() => {
@@ -15,18 +18,37 @@ const SearchResult = () => {
         setLoading(true);
         const response = await fetch(`${YOUTUBE_Search_API_URL}&q=${query}`);
         const data = await response.json();
+        if (data?.error?.errors?.[0]?.reason === "quotaExceeded") {
+          navigate("/error", {
+            state: {
+              message: "YouTube API quota exceeded. Please try again later.",
+              status: 403,
+              statusText: "Quota Exceeded",
+            },
+          });
+          return;
+        }
         setSearchResults(data.items || []);
       } catch (error) {
-        console.error("Error fetching search results:", error);
+        navigate("/error", {
+          state: {
+            message: "Something went wrong while fetching search results.",
+            status: 500,
+            statusText: "Internal Error",
+          },
+        });
       } finally {
         setLoading(false);
       }
     };
 
-    if (query) fetchSearchResults();
+    if (query) {
+      fetchSearchResults();
+    }
   }, [query]);
 
   const handleVideoClick = (videoId) => {
+    dispatch(closeSidebar());
     navigate(`/watch?v=${videoId}`);
   };
 
@@ -42,7 +64,7 @@ const SearchResult = () => {
         <div className="flex flex-col gap-6">
           {searchResults.map((video) => {
             const snippet = video.snippet;
-            const videoId = video.id.videoId || video.id;
+            const videoId = video.id.videoId;
             if (!videoId || !snippet?.thumbnails) return null;
 
             return (
