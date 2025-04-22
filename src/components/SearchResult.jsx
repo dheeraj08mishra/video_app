@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { YOUTUBE_Search_API_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { closeSidebar } from "../utils/redux/sidebarSlice";
+import { clearChatMessages } from "../utils/redux/chatSlice";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
@@ -49,6 +50,7 @@ const SearchResult = () => {
 
   const handleVideoClick = (videoId) => {
     dispatch(closeSidebar());
+    dispatch(clearChatMessages());
     navigate(`/watch?v=${videoId}`);
   };
 
@@ -64,7 +66,7 @@ const SearchResult = () => {
         <div className="flex flex-col gap-6">
           {searchResults.map((video) => {
             const snippet = video.snippet;
-            const videoId = video.id.videoId;
+            const videoId = video.id?.videoId || video.id;
             if (!videoId || !snippet?.thumbnails) return null;
 
             return (

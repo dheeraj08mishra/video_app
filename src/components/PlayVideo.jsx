@@ -1,25 +1,39 @@
 import { useSearchParams } from "react-router-dom";
 import Comments from "./Comments";
+import VideoPlayer from "./VideoPlayer";
+import LiveChat from "./LiveChat";
+import RecommendedVideos from "./RecommendedVideos";
+
 const PlayVideo = () => {
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
-  const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&showinfo=0&modestbranding=1`;
-  console.log(videoUrl);
+
   return (
-    <>
-      <div className="w-full max-w-4xl p-4 aspect-video">
-        <iframe
-          className="w-full h-full rounded-xl shadow-lg"
-          src={videoUrl}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          title="YouTube Video Player"
-        ></iframe>
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <div className="flex flex-row justify-center p-4 gap-4">
+        {/* Video + Comments Section */}
+        <div className="flex flex-col w-full max-w-4xl">
+          <div className="aspect-video w-full">
+            <VideoPlayer videoId={videoId} />
+          </div>
+          <div className="mt-4">
+            <Comments videoId={videoId} />
+          </div>
+        </div>
+
+        {/* Right Sidebar: Live Chat + Recommendations */}
+        <div className="flex flex-col w-[400px] ">
+          <div className="bg-white h-[500px] rounded-lg shadow border border-gray-200 p-2 flex flex-col">
+            <LiveChat videoId={videoId} />
+          </div>
+
+          <div className="bg-white rounded-lg shadow border border-gray-200 p-2">
+            <RecommendedVideos videoId={videoId} />
+          </div>
+        </div>
       </div>
-      <div className="flex flex-col p-4">
-        <Comments videoId={videoId} />
-      </div>
-    </>
+    </div>
   );
 };
+
 export default PlayVideo;
