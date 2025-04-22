@@ -12,10 +12,16 @@ import {
   setSuggestions,
   clearSuggestions,
 } from "../utils/redux/searchSlice";
+import { logout } from "../utils/redux/userSlice";
+import { auth } from "../utils/firebase";
+import { signOut } from "firebase/auth";
+import { useState } from "react";
 
 const Header = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((store) => store.user.currentUser);
   const storedKeyword = useSelector((store) => store.suggestion.keyword);
   const searchValue = useSelector((store) => store.search.value);
   const suggestions = useSelector((store) => store.search.suggestions);
@@ -114,6 +120,20 @@ const Header = () => {
     }
   };
 
+  const handleUser = async () => {
+    if (user) {
+      try {
+        await signOut(auth); // Firebase logout
+        dispatch(logout()); // Redux logout
+        navigate("/"); // Redirect to home
+      } catch (err) {
+        console.error("Error signing out:", err);
+      }
+    } else {
+      navigate("/login"); // Optional: take to login page instead of "/"
+    }
+  };
+
   return (
     <>
       <div className="flex justify-between items-center px-4 py-2 shadow-md sticky top-0 bg-white z-50">
@@ -180,6 +200,61 @@ const Header = () => {
         {/* Right Icons */}
         <div className="flex space-x-4 items-center">
           {/* Future icons like upload, notifications, user profile */}
+          {/* <button className="text-xl px-2 cursor-pointer"> logout</button> */}
+          <button
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="text-xl px-2 relative"
+          >
+            <img
+              className="w-8 h-8 rounded-full cursor-pointer"
+              src={
+                user?.photoURL ||
+                "https://yt3.ggpht.com/yti/ANjgQV-JfW-A1DLg03Se5RByMUDC1LxlmyZtaZrZz5DHfePlJUwd=s88-c-k-c0x00ffffff-no-rj"
+              }
+              alt="user"
+            />
+          </button>
+          {showDropdown && (
+            <div className="absolute right-4 top-14 bg-white border rounded-lg shadow-lg z-50 w-48">
+              <ul className="text-sm text-gray-700">
+                <li className="px-4 py-2 hover:bg-gray-100">{user?.email}</li>
+                <hr />
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    // navigate("/channel");
+                  }}
+                >
+                  👤 Your Channel
+                </li>
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    // navigate("/watch-history");
+                  }}
+                >
+                  📺 Watch History
+                </li>
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    // navigate("/settings");
+                  }}
+                >
+                  ⚙️ Settings
+                </li>
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={handleUser}
+                >
+                  🚪 Logout
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 

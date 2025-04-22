@@ -4,6 +4,7 @@ import MainContainer from "./MainContainer";
 import PlayVideo from "./PlayVideo";
 import SearchResult from "./SearchResult";
 import ErrorDetails from "./ErrorDetails";
+import AuthObserver from "./AuthObserver";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,9 @@ const router = createBrowserRouter([
 const Body = () => {
   return (
     <div className="flex flex-col">
-      <RouterProvider router={router} />
+      <AuthObserver>
+        <RouterProvider router={router} />
+      </AuthObserver>
     </div>
   );
 };

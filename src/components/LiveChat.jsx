@@ -57,8 +57,6 @@ const LiveChat = ({ videoId }) => {
       try {
         const response = await fetch(YOUTUBE_API_URL);
         const data = await response.json();
-
-        console.log(data);
       } catch (error) {
         navigate("/error", {
           state: {

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { clearChatMessages } from "../utils/redux/chatSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setVideos, setPageToken, setLoading } from "../utils/redux/videoSlice";
+import Shimmer from "./Shimmer";
 
 const VideoList = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const VideoList = () => {
   return (
     <div className="px-4 py-6">
       <h1 className="text-2xl font-bold mb-4">Trending Videos</h1>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {videos.map((video, index) => (
           <div
@@ -105,6 +107,12 @@ const VideoList = () => {
             </div>
           </div>
         ))}
+
+        {/* Show skeletons inside the grid during loading */}
+        {loading &&
+          Array.from({ length: 8 }).map((_, i) => (
+            <Shimmer key={`skeleton-${i}`} />
+          ))}
       </div>
 
       <div ref={bottomRef} className="h-10 my-4 col-span-full"></div>

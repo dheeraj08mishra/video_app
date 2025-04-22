@@ -1,10 +1,20 @@
 import { useSelector } from "react-redux";
 import Header from "./Header";
+import Login from "./Login";
 
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   const isSidebarOpen = useSelector((store) => store.sidebar.isSidebarOpen);
+  const isUserLoggedIn = useSelector((store) => store.user.currentUser);
+
+  if (!isUserLoggedIn) {
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Login />
+      </div>
+    );
+  }
 
   return (
     <>
