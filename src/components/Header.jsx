@@ -199,8 +199,6 @@ const Header = () => {
 
         {/* Right Icons */}
         <div className="flex space-x-4 items-center">
-          {/* Future icons like upload, notifications, user profile */}
-          {/* <button className="text-xl px-2 cursor-pointer"> logout</button> */}
           <button
             onClick={() => setShowDropdown(!showDropdown)}
             className="text-xl px-2 relative"

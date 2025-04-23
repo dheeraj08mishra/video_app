@@ -5,6 +5,7 @@ import { clearChatMessages } from "../utils/redux/chatSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setVideos, setPageToken, setLoading } from "../utils/redux/videoSlice";
 import Shimmer from "./Shimmer";
+import { addToHistoryAndSync } from "../utils/redux/historyThunk";
 
 const VideoList = () => {
   const dispatch = useDispatch();
@@ -12,12 +13,14 @@ const VideoList = () => {
   const loading = useSelector((store) => store.videos.loading);
   const videos = useSelector((store) => store.videos.videos);
   const pageToken = useSelector((store) => store.videos.pageToken);
+  const user = useSelector((store) => store.user.currentUser);
 
   const bottomRef = useRef(null);
 
   const playWatchVideo = (video) => {
     const videoId = video.id.videoId || video.id;
     navigate(`/watch?v=${videoId}`);
+    dispatch(addToHistoryAndSync(user.uid, video));
     dispatch(clearChatMessages());
   };
 

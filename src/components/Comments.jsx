@@ -19,13 +19,16 @@ const Comments = ({ videoId }) => {
           },
         });
         if (!response.ok) {
-          throw new Error("Failed to fetch comments");
+          // throw new Error("Failed to fetch comments");
+          dispatch(setComments([]));
+          dispatch(setLoading(false));
+          return;
         }
         const data = await response.json();
         dispatch(setComments(data.items));
         dispatch(setLoading(true));
       } catch (error) {
-        console.error("Error fetching comments:", error);
+        // console.error("Error fetching comments:", error);
         dispatch(setComments([]));
         dispatch(setLoading(false));
       }

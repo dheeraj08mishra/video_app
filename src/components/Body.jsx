@@ -5,6 +5,7 @@ import PlayVideo from "./PlayVideo";
 import SearchResult from "./SearchResult";
 import ErrorDetails from "./ErrorDetails";
 import AuthObserver from "./AuthObserver";
+import WatchHistory from "./WatchHistory";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "shorts",
         element: <div>Shorts Page</div>,
+      },
+      {
+        path: "history",
+        element: <WatchHistory />,
       },
       {
         path: "error",
