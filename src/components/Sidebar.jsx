@@ -18,7 +18,7 @@ const Sidebar = () => {
         </li>
         <hr />
         <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-          📚 Library
+          <Link to="/history">🕒 Watch History</Link>
         </li>
         <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
           👍 Liked Videos

@@ -21,6 +21,7 @@
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.14.4"
   }
 }

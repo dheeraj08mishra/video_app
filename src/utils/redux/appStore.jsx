@@ -6,6 +6,7 @@ import commentReducer from "./commentSlice";
 import chatReducer from "./chatSlice";
 import videoReducer from "./videoSlice";
 import userReducer from "./userSlice";
+import historyReducer from "./historySlice";
 
 const appStore = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const appStore = configureStore({
     chat: chatReducer,
     videos: videoReducer,
     user: userReducer,
+    history: historyReducer,
   },
 });
 export default appStore;

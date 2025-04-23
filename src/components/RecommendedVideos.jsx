@@ -1,13 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import { YOUTUBE_API_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToHistoryAndSync } from "../utils/redux/historyThunk";
 
 const RecommendedVideos = () => {
   const [videos, setVideos] = useState([]);
   const [pageToken, setPageToken] = useState("");
   const [loading, setLoading] = useState(false);
+  const user = useSelector((store) => store.user.currentUser);
   const bottomRef = useRef(null);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;
     setLoading(true);
@@ -50,6 +54,12 @@ const RecommendedVideos = () => {
     };
   }, [bottomRef, pageToken]);
 
+  const storeInHistory = (video) => {
+    dispatch(addToHistoryAndSync(user.uid, video));
+    const videoId = video.id.videoId || video.id;
+    navigate(`/watch?v=${videoId}`);
+  };
+
   return (
     <>
       <div className=" overflow-y-auto pr-1">
@@ -59,10 +69,10 @@ const RecommendedVideos = () => {
           const { title, thumbnails, channelTitle } = video.snippet;
 
           return (
-            <Link
-              to={`/watch?v=${videoId}`}
+            <div
+              onClick={() => storeInHistory(video)}
               key={videoId + "_" + index}
-              className="flex gap-2 mb-3 hover:bg-gray-100 rounded-lg p-1 transition"
+              className="flex gap-2 mb-3 hover:bg-gray-100 rounded-lg p-1 transition duration-200 cursor-pointer"
             >
               <img
                 src={thumbnails.medium.url}
@@ -75,7 +85,7 @@ const RecommendedVideos = () => {
                 </p>
                 <p className="text-gray-500 text-xs mt-1">{channelTitle}</p>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>
