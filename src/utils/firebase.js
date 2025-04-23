@@ -1,25 +1,27 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { login, logout } from "./redux/userSlice";
-import appStore from "./redux/appStore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// firebase.js
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+// Only import getAnalytics if you're actually using it
+// import { getAnalytics } from "firebase/analytics";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBDIyWlDu9YvhIk5eQ6jqPd8tEraP8dacA",
-  authDomain: "video-app-4c078.firebaseapp.com",
-  projectId: "video-app-4c078",
-  storageBucket: "video-app-4c078.firebasestorage.app",
-  messagingSenderId: "891727920758",
-  appId: "1:891727920758:web:82ada02b2c64f3f730e957",
-  measurementId: "G-5PGKKY3KXX",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, // Optional
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// Optional: Only initialize analytics if you're using it and in the browser
+// let analytics;
+// if (typeof window !== "undefined") {
+//   analytics = getAnalytics(app);
+// }
+
 export const auth = getAuth(app);
