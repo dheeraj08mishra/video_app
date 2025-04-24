@@ -7,6 +7,7 @@ import chatReducer from "./chatSlice";
 import videoReducer from "./videoSlice";
 import userReducer from "./userSlice";
 import historyReducer from "./historySlice";
+import toggleDarkModeReducer from "./toggleDarkMode";
 
 const appStore = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const appStore = configureStore({
     videos: videoReducer,
     user: userReducer,
     history: historyReducer,
+    toggleDarkMode: toggleDarkModeReducer,
   },
 });
 export default appStore;

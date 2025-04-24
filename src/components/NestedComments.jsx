@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 const NestedComments = ({ comments }) => {
+  const isDarkMode = useSelector((store) => store.toggleDarkMode.darkMode);
   if (!comments) return null;
   const {
     authorDisplayName,
@@ -8,9 +10,13 @@ const NestedComments = ({ comments }) => {
     publishedAt,
   } = comments.snippet;
   const replies = comments.replies?.comments || [];
+  const textColor = isDarkMode ? "text-white" : "text-gray-800";
+  // const backgroundColor = isDarkMode ? "bg-gray-800" : "bg-white";
+  const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200";
+  const textDisplayStyle = isDarkMode ? "text-gray-300" : "text-gray-800";
 
   return (
-    <div className="flex flex-col border-b border-gray-200 mb-4 pl-4">
+    <div className={`flex flex-col border mb-4 pl-4 ${borderColor}`}>
       <div className="flex items-start gap-3 mb-2">
         <img
           src={authorProfileImageUrl}
@@ -20,7 +26,8 @@ const NestedComments = ({ comments }) => {
         <div>
           <p className="font-semibold text-sm">{authorDisplayName}</p>
           <p
-            className="text-sm text-gray-800"
+            className={`text-sm ${textDisplayStyle} ${textColor}`}
+            style={{ wordBreak: "break-word" }}
             dangerouslySetInnerHTML={{ __html: textDisplay }}
           />
           <div className="text-xs text-gray-500 mt-1">

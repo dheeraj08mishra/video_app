@@ -6,6 +6,7 @@ import SearchResult from "./SearchResult";
 import ErrorDetails from "./ErrorDetails";
 import AuthObserver from "./AuthObserver";
 import WatchHistory from "./WatchHistory";
+import { useSelector } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,14 @@ const router = createBrowserRouter([
 ]);
 
 const Body = () => {
+  const isDarkMode = useSelector((store) => store.toggleDarkMode.darkMode);
+
   return (
-    <div className="flex flex-col">
+    <div
+      className={`flex flex-col ${
+        isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+      }`}
+    >
       <AuthObserver>
         <RouterProvider router={router} />
       </AuthObserver>

@@ -16,6 +16,7 @@ import { logout } from "../utils/redux/userSlice";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { useState } from "react";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -27,6 +28,7 @@ const Header = () => {
   const suggestions = useSelector((store) => store.search.suggestions);
   const selectedIndex = useSelector((store) => store.search.selectedIndex);
   const loading = useSelector((store) => store.search.loading);
+  const isDarkMode = useSelector((store) => store.toggleDarkMode.darkMode);
 
   const toggleSideBar = () => {
     dispatch(toggleSidebar());
@@ -136,7 +138,11 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center px-4 py-2 shadow-md sticky top-0 bg-white z-50">
+      <div
+        className={`flex justify-between items-center px-4 py-2 shadow-md sticky top-0 z-50 ${
+          isDarkMode ? "bg-gray-800 text-white" : "bg-white"
+        }`}
+      >
         <div className="flex items-center space-x-4">
           <button
             onClick={toggleSideBar}
@@ -199,6 +205,7 @@ const Header = () => {
 
         {/* Right Icons */}
         <div className="flex space-x-4 items-center">
+          <DarkModeToggle />
           <button
             onClick={() => setShowDropdown(!showDropdown)}
             className="text-xl px-2 relative"

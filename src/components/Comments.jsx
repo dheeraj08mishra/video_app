@@ -8,6 +8,7 @@ const Comments = ({ videoId }) => {
   const dispatch = useDispatch();
   const comments = useSelector((store) => store.comment.comments);
   const loading = useSelector((store) => store.comment.loading);
+  const isDarkMode = useSelector((store) => store.toggleDarkMode.darkMode);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -37,7 +38,11 @@ const Comments = ({ videoId }) => {
   }, [videoId]);
 
   return (
-    <div className="p-4">
+    <div
+      className={`p-4 ${
+        isDarkMode ? "bg-gray-800" : "bg-white"
+      } rounded-lg shadow-md`}
+    >
       <h2 className="text-xl font-semibold mb-4">Comments</h2>
       {loading && comments.length === 0 ? (
         <p>No comments found.</p>
