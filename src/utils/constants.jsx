@@ -38,3 +38,7 @@ export const dummyMessages = [
   "I just learned so much!",
   "Can someone explain the last part?",
 ];
+
+export const YOUTUBE_API_URL_VideoCategories =
+  "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=" +
+  Youtube_Api_Key;
