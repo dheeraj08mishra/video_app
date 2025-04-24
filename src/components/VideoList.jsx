@@ -11,7 +11,7 @@ const VideoList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector((store) => store.videos.loading);
-  const videos = useSelector((store) => store.videos.videos);
+  const videos = useSelector((store) => store.videos.videos) || [];
   const pageToken = useSelector((store) => store.videos.pageToken);
   const user = useSelector((store) => store.user.currentUser);
 
@@ -76,42 +76,42 @@ const VideoList = () => {
       <h1 className="text-2xl font-bold mb-4">Trending Videos</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {videos.map((video, index) => (
-          <div
-            onClick={() => playWatchVideo(video)}
-            key={`${video.id.videoId || video.id}-${
-              video.snippet.publishedAt
-            }_${index}`}
-            className="rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300 cursor-pointer"
-          >
-            <div className="aspect-video w-full">
-              <img
-                src={video.snippet.thumbnails.medium.url}
-                alt={video.snippet.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+        {videos.length > 0 &&
+          videos.map((video, index) => (
+            <div
+              onClick={() => playWatchVideo(video)}
+              key={`${video.id.videoId || video.id}-${
+                video.snippet.publishedAt
+              }_${index}`}
+              className="rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300 cursor-pointer"
+            >
+              <div className="aspect-video w-full">
+                <img
+                  src={video.snippet.thumbnails.medium.url}
+                  alt={video.snippet.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-            <div className="p-3">
-              <h2 className="text-sm font-semibold line-clamp-2">
-                {video.snippet.title}
-              </h2>
-              <p className="text-gray-600 text-xs mt-1">
-                {video.snippet.channelTitle}
-              </p>
-              <p className="text-gray-500 text-xs">
-                {video.statistics?.viewCount
-                  ? `${Number(
-                      video.statistics.viewCount
-                    ).toLocaleString()} views • `
-                  : ""}
-                {new Date(video.snippet.publishedAt).toLocaleDateString()}
-              </p>
+              <div className="p-3">
+                <h2 className="text-sm font-semibold line-clamp-2">
+                  {video.snippet.title}
+                </h2>
+                <p className="text-gray-600 text-xs mt-1">
+                  {video.snippet.channelTitle}
+                </p>
+                <p className="text-gray-500 text-xs">
+                  {video.statistics?.viewCount
+                    ? `${Number(
+                        video.statistics.viewCount
+                      ).toLocaleString()} views • `
+                    : ""}
+                  {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
-        {/* Show skeletons inside the grid during loading */}
         {loading &&
           Array.from({ length: 8 }).map((_, i) => (
             <Shimmer key={`skeleton-${i}`} />

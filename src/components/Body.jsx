@@ -46,7 +46,7 @@ const Body = () => {
 
   return (
     <div
-      className={`flex flex-col ${
+      className={`flex flex-col h-full ${
         isDarkMode ? "bg-gray-800 text-white" : "bg-white text-black"
       }`}
     >
