@@ -224,33 +224,17 @@ const Header = () => {
               <ul className="text-sm text-gray-700">
                 <li className="px-4 py-2 hover:bg-gray-100">{user?.email}</li>
                 <hr />
+
                 <li
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
                     setShowDropdown(false);
-                    // navigate("/channel");
-                  }}
-                >
-                  👤 Your Channel
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => {
-                    setShowDropdown(false);
-                    // navigate("/watch-history");
+                    navigate("/history");
                   }}
                 >
                   📺 Watch History
                 </li>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => {
-                    setShowDropdown(false);
-                    // navigate("/settings");
-                  }}
-                >
-                  ⚙️ Settings
-                </li>
+
                 <li
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={handleUser}
