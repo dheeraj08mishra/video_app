@@ -20,6 +20,7 @@ const LiveChat = ({ videoId }) => {
   const isTyping = useSelector((store) => store.chat.isTyping);
   const chatMessages = useSelector((store) => store.chat.chatMessages);
   const userInput = useSelector((store) => store.chat.userInput);
+  const isDarkMode = useSelector((store) => store.toggleDarkMode.darkMode);
   const chatRef = useRef();
 
   useEffect(() => {
@@ -87,12 +88,18 @@ const LiveChat = ({ videoId }) => {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div
+      className={`flex flex-col h-full ${
+        isDarkMode ? "bg-gray-800 text-white" : "bg-white"
+      } rounded-lg shadow-md`}
+    >
       {/* Header */}
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-lg font-semibold">Live Chat</h2>
         <button
-          className="text-sm text-white bg-gray-800 px-3 py-1 rounded hover:bg-gray-700"
+          className={`text-sm  px-3 py-1 rounded hover:bg-gray-700} ${
+            isDarkMode ? "bg-gray-700 text-white" : "bg-gray-200"
+          }`}
           onClick={() => dispatch(setIsPaused(!isPaused))}
         >
           {isPaused ? (

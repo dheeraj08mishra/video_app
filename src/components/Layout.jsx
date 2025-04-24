@@ -20,7 +20,7 @@ const Layout = () => {
     <>
       <Header />
       <div
-        className={`pt-4 transition-all duration-300 ${
+        className={`pt-1 transition-all duration-300 ${
           isSidebarOpen ? "ml-52" : "ml-0"
         }`}
       >

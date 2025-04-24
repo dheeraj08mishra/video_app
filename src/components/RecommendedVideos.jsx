@@ -9,6 +9,7 @@ const RecommendedVideos = () => {
   const [pageToken, setPageToken] = useState("");
   const [loading, setLoading] = useState(false);
   const user = useSelector((store) => store.user.currentUser);
+  const isDarkMode = useSelector((store) => store.toggleDarkMode.darkMode);
   const bottomRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,7 +63,11 @@ const RecommendedVideos = () => {
 
   return (
     <>
-      <div className=" overflow-y-auto pr-1">
+      <div
+        className={`overflow-y-auto pr-1 ${
+          isDarkMode ? "bg-gray-800 text-white" : "bg-white"
+        }`}
+      >
         <h2 className="text-md font-semibold mb-2">Recommended Videos</h2>
         {videos.map((video, index) => {
           const videoId = video.id;
@@ -79,11 +84,21 @@ const RecommendedVideos = () => {
                 alt={title}
                 className="w-40 h-24 object-cover rounded-md"
               />
-              <div className="flex flex-col text-sm w-[calc(100%-10rem)]">
+              <div
+                className={`flex flex-col text-sm w-[calc(100%-10rem)] ${
+                  isDarkMode ? "text-white" : "text-gray-800"
+                }`}
+              >
                 <p className="font-semibold line-clamp-2 leading-tight">
                   {title}
                 </p>
-                <p className="text-gray-500 text-xs mt-1">{channelTitle}</p>
+                <p
+                  className={`text-gray-500 text-xs mt-1 ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
+                  {channelTitle}
+                </p>
               </div>
             </div>
           );
