@@ -22,24 +22,7 @@ const Sidebar = () => {
           >
             <Link to="/">🏠 Home</Link>
           </li>
-          <li
-            className={
-              isDarkMode
-                ? "hover:bg-gray-800 p-2 rounded cursor-pointer"
-                : "hover:bg-gray-100 p-2 rounded cursor-pointer"
-            }
-          >
-            <Link to="/shorts">🎬 Shorts</Link>
-          </li>
-          <li
-            className={
-              isDarkMode
-                ? "hover:bg-gray-800 p-2 rounded cursor-pointer"
-                : "hover:bg-gray-100 p-2 rounded cursor-pointer"
-            }
-          >
-            📺 Subscriptions
-          </li>
+
           <hr />
           <li
             className={
@@ -48,16 +31,7 @@ const Sidebar = () => {
                 : "hover:bg-gray-100 p-2 rounded cursor-pointer"
             }
           >
-            <Link to="/history">🕒 Watch History</Link>
-          </li>
-          <li
-            className={
-              isDarkMode
-                ? "hover:bg-gray-800 p-2 rounded cursor-pointer"
-                : "hover:bg-gray-100 p-2 rounded cursor-pointer"
-            }
-          >
-            👍 Liked Videos
+            <Link to="/history">📺 Watch History</Link>
           </li>
         </ul>
       </div>
