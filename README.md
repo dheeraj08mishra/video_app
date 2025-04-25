@@ -64,14 +64,11 @@ REACT_APP_FIREBASE_API_KEY=your_firebase_key
 ### 🏠 Home Page
 ![image](https://github.com/user-attachments/assets/df8a129c-81ff-44e8-961d-20ab34d78425)
 
-
 ### 🎥 Watch Page
 ![image](https://github.com/user-attachments/assets/ffa4a7be-9fb4-4702-a84a-119ad7498394)
 
-
 ### Comment Page
 ![image](https://github.com/user-attachments/assets/2bca1b8a-a444-440a-a48d-28cf7eb53112)
-
 
 ### 🌙 Dark Mode
 ![image](https://github.com/user-attachments/assets/f1619d76-4de7-4cd1-aa52-d1e33104a500)
@@ -83,6 +80,12 @@ REACT_APP_FIREBASE_API_KEY=your_firebase_key
 
 ### Login Page
 ![image](https://github.com/user-attachments/assets/5e851466-3d8e-4319-b4d7-b05a3d40a882)
+
+### Search Result
+![image](https://github.com/user-attachments/assets/4e28e05e-511f-484f-9286-e8085bf5580f)
+![image](https://github.com/user-attachments/assets/e0e790af-ae28-412d-a3fa-3841fb5afca3)
+
+
 
 
 
