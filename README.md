@@ -70,7 +70,7 @@ REACT_APP_FIREBASE_API_KEY=your_firebase_key
 
 
 ### Comment Page
-[image](https://github.com/user-attachments/assets/2bca1b8a-a444-440a-a48d-28cf7eb53112)
+![image](https://github.com/user-attachments/assets/2bca1b8a-a444-440a-a48d-28cf7eb53112)
 
 
 ### 🌙 Dark Mode
