@@ -62,28 +62,27 @@ REACT_APP_FIREBASE_API_KEY=your_firebase_key
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page]
 ![image](https://github.com/user-attachments/assets/df8a129c-81ff-44e8-961d-20ab34d78425)
 
 
 ### 🎥 Watch Page
-![Watch Page]![image](https://github.com/user-attachments/assets/ffa4a7be-9fb4-4702-a84a-119ad7498394)
+![image](https://github.com/user-attachments/assets/ffa4a7be-9fb4-4702-a84a-119ad7498394)
 
 
 ### Comment Page
-![Comment Page]![image](https://github.com/user-attachments/assets/2bca1b8a-a444-440a-a48d-28cf7eb53112)
+[image](https://github.com/user-attachments/assets/2bca1b8a-a444-440a-a48d-28cf7eb53112)
 
 
 ### 🌙 Dark Mode
-![Dark Mode]![image](https://github.com/user-attachments/assets/f1619d76-4de7-4cd1-aa52-d1e33104a500)
+![image](https://github.com/user-attachments/assets/f1619d76-4de7-4cd1-aa52-d1e33104a500)
 ![image](https://github.com/user-attachments/assets/679ea0ee-99a0-431f-a56e-771cb93066cb)
 
 ### 📺 Watch History Page
-![Watch History Page]![image](https://github.com/user-attachments/assets/63839cc4-f743-4a56-8647-46162a151dfa)
+![image](https://github.com/user-attachments/assets/63839cc4-f743-4a56-8647-46162a151dfa)
 ![image](https://github.com/user-attachments/assets/0e67d256-1a79-4043-ac26-7b5cc898d39c)
 
 ### Login Page
-![Login Page]![image](https://github.com/user-attachments/assets/5e851466-3d8e-4319-b4d7-b05a3d40a882)
+![image](https://github.com/user-attachments/assets/5e851466-3d8e-4319-b4d7-b05a3d40a882)
 
 
 
